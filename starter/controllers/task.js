@@ -30,7 +30,7 @@ const getSingleTasks = async (req, res) => {
 
 
         if(!singleTask){
-            return res.status(404).json({msg:`no task with id ${taskId}`})
+            return res.status(404).json({msg:`no task with that id ${taskId}`})
         }
 
 
@@ -51,7 +51,7 @@ const deleteTasks = async (req, res) => {
         const taskToDelete =  await TaskModels.findOneAndDelete({_id:taskId});
 
         if (!taskToDelete) {
-            return res.status(500).json({msg:`there is no task wih id ${taskId}`})
+            return res.status(500).json({msg:`there is no task with that id ${taskId}`})
     }
     res.status(200).json(taskToDelete)
     } catch (error) {
@@ -69,7 +69,7 @@ const updateTasks = async (req, res) => {
             runValidators:true
         });
         if(!updataValue){
-            return res.status(500).json({msg: `there is no task wih id ${taskId} `})
+            return res.status(500).json({msg: `there is no task with id ${taskId} `})
         }
         res.status(200).json(updataValue)
     } catch (error) {

@@ -20,7 +20,7 @@
 
 // const start = async () => {
 //   try {
-//     // Connect to MongoDB database by hidding usercredintials and authontication by dotenv
+//     // Connect to MongoDB database by hidding usercredentials and authontication by dotenv
 //     // await connection(process.env.connectionString);
 //     await connection();
 //     app.listen(port, () => {
@@ -39,6 +39,7 @@ const express = require('express');
 const app = express();
 const tasksRouter = require('./routers/tasks');
 const connectDb = require('./starter/db/connect');
+const dotenv = require('dotenv').config();
 
 // Middleware
 app.use(express.json());
@@ -55,7 +56,7 @@ const port = process.env.PORT || 3000;
 // Start the server
 const start = async () => {
     try {
-        await connectDb();
+        await connectDb(process.env.dotenv);
         app.listen(port, () => {
             console.log(`Server is listening on port ${port}`);
         });
